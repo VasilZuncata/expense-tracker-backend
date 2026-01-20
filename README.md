@@ -96,4 +96,69 @@ Controller → Service → Repository → Database
 ### 1. Клониране
 ```bash
 git clone <repository-url>
-cd expense-tracker
+cd expense-tracker 
+
+2. Стартиране
+mvn spring-boot:run
+
+При успешно стартиране:
+
+Tomcat started on port(s): 8080
+
+Достъп до приложението
+Swagger UI (API тестове)
+http://localhost:8080/swagger-ui/index.html
+
+H2 Console (база данни)
+http://localhost:8080/h2-console
+
+
+Настройки:
+
+JDBC URL: jdbc:h2:mem:testdb
+User: sa
+Password: (празно)
+
+Примерни API заявки
+
+Създаване на потребител
+POST /users
+
+{
+  "username": "testuser",
+  "email": "test@test.com",
+  "password": "123456"
+}
+
+Създаване на таг
+POST /tags
+
+{
+  "name": "food"
+}
+
+Добавяне на таг към разход
+POST /tags/expense/{expenseId}?tagName=food
+
+Проверка на ManyToMany връзката
+
+В H2 Console:
+
+SELECT * FROM EXPENSE_TAGS;
+
+
+Разпределение на задачите
+
+Васил Зунков – Users, Roles, DTO, Mapper
+
+Тодор Траянов – Expenses, Categories
+
+Любен Аратлъков – Tags, ManyToMany логика
+
+Борислав Колев – Custom Queries, Tests, Документация
+
+
+
+
+
+
