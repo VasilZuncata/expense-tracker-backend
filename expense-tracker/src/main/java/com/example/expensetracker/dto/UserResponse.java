@@ -2,18 +2,17 @@ package com.example.expensetracker.dto;
 
 import java.util.Set;
 
-import com.example.expensetracker.entity.RoleName;
-
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class UserResponse {
+
     private Long id;
     private String username;
     private String email;
 
-   
-    private Set<RoleName> roles;
+    // ⬇️ ВАЖНО: String, не RoleName
+    private Set<String> roles;
 }

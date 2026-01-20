@@ -1,13 +1,15 @@
 package com.example.expensetracker.config;
 
+import org.springframework.stereotype.Component;
+
 import com.example.expensetracker.entity.Role;
 import com.example.expensetracker.entity.RoleName;
 import com.example.expensetracker.repository.RoleRepository;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
 
 @Component
-public class DataSeeder implements CommandLineRunner {
+public class DataSeeder {
 
     private final RoleRepository roleRepository;
 
@@ -15,12 +17,11 @@ public class DataSeeder implements CommandLineRunner {
         this.roleRepository = roleRepository;
     }
 
-    @Override
-    public void run(String... args) {
-        roleRepository.findByName(RoleName.USER).orElseGet(() -> {
-            Role r = new Role();
-            r.setName(RoleName.USER);
-            return roleRepository.save(r);
-        });
+    @PostConstruct
+    public void seedRoles() {
+        if (roleRepository.count() == 0) {
+            roleRepository.save(new Role(RoleName.USER));
+            roleRepository.save(new Role(RoleName.ADMIN));
+        }
     }
 }

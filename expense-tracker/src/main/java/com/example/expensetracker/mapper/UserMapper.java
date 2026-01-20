@@ -23,8 +23,12 @@ public class UserMapper {
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                
-                .roles(user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toSet()))
+                .roles(
+                        user.getRoles()
+                                .stream()
+                                .map(r -> r.getName().name())
+                                .collect(Collectors.toSet())
+                )
                 .build();
     }
 }

@@ -7,19 +7,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.expensetracker.dto.UserCreateRequest;
 import com.example.expensetracker.dto.UserResponse;
+import com.example.expensetracker.entity.User;
+import com.example.expensetracker.mapper.UserMapper;
 import com.example.expensetracker.service.UserService;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping
-    public UserResponse create(@RequestBody UserCreateRequest request) {
-        return userService.createUser(request);
+    public UserResponse create(@RequestBody UserCreateRequest req) {
+        User user = userService.createUser(req);   // service връща Entity
+        return UserMapper.toResponse(user);         // mapper -> DTO
     }
 }
