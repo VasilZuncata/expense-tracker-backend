@@ -24,12 +24,19 @@
 
     <dependencies>
 
+<<<<<<< Updated upstream
+=======
+        <!-- Actuator -->
+>>>>>>> Stashed changes
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,13 +84,23 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Tests -->
+        <!-- ================= TEST DEPENDENCIES ================= -->
+
+        <!-- ✅ Spring Boot Test (JUnit 5, Mockito, @DataJpaTest, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JPA Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+        <!-- Web MVC Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
